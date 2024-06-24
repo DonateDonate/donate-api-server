@@ -1,4 +1,4 @@
-package donate_api.sever.presentation.api.config;
+package donate_api.sever.infra.config;
 
 import donate_api.sever.domain.repositories.CommentRepository;
 import donate_api.sever.domain.repositories.MemberRepository;
