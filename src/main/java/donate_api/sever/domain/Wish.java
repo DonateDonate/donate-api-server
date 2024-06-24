@@ -1,10 +1,13 @@
 package donate_api.sever.domain;
 
+import io.micrometer.common.util.StringUtils;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+@NoArgsConstructor (access = AccessLevel.PROTECTED)
 @Getter
 @Entity
 public class Wish {
@@ -15,8 +18,6 @@ public class Wish {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Member member;
-
-    private String name;
 
     private String title;
 
@@ -30,10 +31,30 @@ public class Wish {
 
     private String endDate;
 
+    @Builder
+    public Wish(Member member,String title, String content, Float totalDonationAmount, String imageUrl, String startDate, String endDate) {
 
-    public Wish(Member member, String name, String title, String content, Float totalDonationAmount, String imageUrl, String startDate, String endDate) {
+        if(title.length() >20 || StringUtils.isBlank(title)){
+            throw new IllegalArgumentException("제목은 20글자 이하이어야 합니다.");
+        }
+
+        if(content.length() > 200 || StringUtils.isBlank(content)){
+            throw new IllegalArgumentException("내용은 200글자 이하이어야 합니다.");
+        }
+
+        if(totalDonationAmount.isNaN()){
+            throw new NullPointerException("총 모금액은 null이어서는 안됩니다.");
+        }
+
+        if(StringUtils.isBlank(imageUrl)){
+            throw new NullPointerException("이미지는 null이어서는 안됩니다.");
+        }
+
+        if(StringUtils.isBlank(startDate) || StringUtils.isBlank(endDate)){
+            throw new NullPointerException("기간은 null이어서는 안됩니다.");
+        }
+
         this.member = member;
-        this.name = name;
         this.title = title;
         this.content = content;
         this.totalDonationAmount = totalDonationAmount;
