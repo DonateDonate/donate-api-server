@@ -44,6 +44,7 @@ public class ImageFile {
         String url = filePath + "/" + fileName;
         String mimeType = null;
 
+        //todo service logic으로 이동
         try {
             byte[] bytes = multipartFile.getBytes();
             File file = new File(url);
