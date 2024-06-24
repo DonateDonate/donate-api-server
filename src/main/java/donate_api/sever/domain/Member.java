@@ -1,7 +1,13 @@
 package donate_api.sever.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 @Entity
 public class Member {
     @Id
@@ -15,4 +21,8 @@ public class Member {
     private Account account;
 
     private String imageUrl;
+
+    public Member(String name) {
+        this.name = name;
+    }
 }

@@ -1,4 +1,4 @@
-package donate_api.sever.presentation.config;
+package donate_api.sever.presentation.api.config;
 
 
 import io.swagger.v3.oas.models.Components;

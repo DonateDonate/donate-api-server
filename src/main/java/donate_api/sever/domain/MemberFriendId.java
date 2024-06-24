@@ -14,4 +14,5 @@ public class MemberFriendId {
     private Member member;
 
     private Long friendId;
+    private int type;
 }

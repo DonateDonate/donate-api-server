@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 
 
 @Getter
-@Embeddable // 값 타입 정의
-@NoArgsConstructor // 기본 생성자 필수
+@Embeddable
+@NoArgsConstructor
 public class Account {
 
     @Column(name = "account_name")
