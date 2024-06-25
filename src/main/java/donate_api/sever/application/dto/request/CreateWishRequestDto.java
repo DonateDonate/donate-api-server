@@ -8,7 +8,6 @@ public class CreateWishRequestDto {
     private String title;
     private String content;
     private Float totalDonationAmount;
-    private String imageUrl;
     private String startDate;
     private String endDate;
 }

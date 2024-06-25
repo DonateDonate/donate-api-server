@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,6 +17,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
+@Getter
 @NoArgsConstructor
 @Entity
 public class ImageFile {
@@ -26,11 +28,11 @@ public class ImageFile {
     private long size;
     private String fileName;
     private String url;
-    private Category category;
+    private String category;
     private byte[] file;
 
     @Builder
-    public ImageFile(String mimeType, long size, String fileName, String url, Category category, byte[] file) {
+    public ImageFile(String mimeType, long size, String fileName, String url, String category, byte[] file) {
         this.mimeType = mimeType;
         this.size = size;
         this.fileName = fileName;
@@ -39,21 +41,10 @@ public class ImageFile {
         this.file = file;
     }
 
-    public ImageFile create(MultipartFile multipartFile, Category category, String filePath){
+    public ImageFile create(MultipartFile multipartFile, String category, String filePath){
         String fileName = String.valueOf(UUID.randomUUID());
-        String url = filePath + "/" + fileName;
+        String url = filePath + "/" + category + "/" +fileName;
         String mimeType = null;
-
-        //todo service logic으로 이동
-        try {
-            byte[] bytes = multipartFile.getBytes();
-            File file = new File(url);
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            fileOutputStream.write(bytes);
-            fileOutputStream.close();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
 
         Path savePath = Paths.get(url);
         try {
@@ -70,5 +61,4 @@ public class ImageFile {
                 .category(category)
                 .build();
     }
-
 }

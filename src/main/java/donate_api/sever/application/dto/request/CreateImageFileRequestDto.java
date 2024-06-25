@@ -5,6 +5,6 @@ import lombok.Getter;
 
 @Getter
 public class CreateImageFileRequestDto {
-    private Category category;
+    private String category;
     private String filePath;
 }
