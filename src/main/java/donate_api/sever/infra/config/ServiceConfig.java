@@ -5,6 +5,7 @@ import donate_api.sever.application.service.WishService;
 import donate_api.sever.domain.Wish;
 import donate_api.sever.domain.repositories.MemberRepository;
 import donate_api.sever.domain.repositories.WishRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

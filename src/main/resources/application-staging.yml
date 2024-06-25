@@ -20,3 +20,8 @@ spring:
 logging.level:
   org.hibernate.SQL: debug
 #  org.hibernate.type: trace
+
+file:
+  dir: images
+  base:
+    url: /Users/mac-00220/sanha

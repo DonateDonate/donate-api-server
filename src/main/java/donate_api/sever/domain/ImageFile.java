@@ -41,9 +41,9 @@ public class ImageFile {
         this.file = file;
     }
 
-    public ImageFile create(MultipartFile multipartFile, String category, String filePath){
+    public ImageFile create(MultipartFile multipartFile, String category,String fileDir){
         String fileName = String.valueOf(UUID.randomUUID());
-        String url = filePath + "/" + category + "/" +fileName;
+        String url = "/" +fileDir + "/" + category + "/" +fileName;
         String mimeType = null;
 
         Path savePath = Paths.get(url);

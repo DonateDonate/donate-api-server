@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,8 +18,8 @@ public class FileController {
 
     private final FileService fileService;
 
-    @GetMapping("/images")
-    public ResponseEntity<Object> images(@RequestParam("fileName") String fileName, @RequestParam("category") String category){
+    @GetMapping("/images/{category}/{fileName}")
+    public ResponseEntity<Object> images(@PathVariable("category") String category, @PathVariable("fileName") String fileName){
 
         InputStreamResource imageFile = fileService.getImageFile(fileName, category);
 
