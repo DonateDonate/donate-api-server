@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @NoArgsConstructor (access = AccessLevel.PROTECTED)
 @Getter
 @Entity
@@ -30,6 +33,9 @@ public class Wish {
     private String startDate;
 
     private String endDate;
+
+    @OneToMany(mappedBy = "wish")
+    private List<Donate> donateList = new ArrayList<>();
 
     @Builder
     public Wish(Member member,String title, String content, Float totalDonationAmount, String imageUrl, String startDate, String endDate) {

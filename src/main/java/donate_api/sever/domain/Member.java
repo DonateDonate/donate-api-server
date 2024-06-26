@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -21,6 +24,9 @@ public class Member {
     private Account account;
 
     private String imageUrl;
+
+    @OneToMany(mappedBy = "member")
+    private List<Wish> wishList = new ArrayList<>();
 
     public Member(String name) {
         this.name = name;
