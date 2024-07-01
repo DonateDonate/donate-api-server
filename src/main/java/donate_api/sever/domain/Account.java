@@ -16,4 +16,9 @@ public class Account {
 
     @Column(name = "account_number")
     private String number;
+
+    public Account(String name, String number) {
+        this.name = name;
+        this.number = number;
+    }
 }

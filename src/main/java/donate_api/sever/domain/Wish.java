@@ -37,15 +37,19 @@ public class Wish {
     @OneToMany(mappedBy = "wish")
     private List<Donate> donateList = new ArrayList<>();
 
+    public void addDonateList(Donate donate){
+        donateList.add(donate);
+    }
+
     @Builder
     public Wish(Member member,String title, String content, Float totalDonationAmount, String imageUrl, String startDate, String endDate) {
 
-        if(title.length() >20 || StringUtils.isBlank(title)){
-            throw new IllegalArgumentException("제목은 20글자 이하이어야 합니다.");
+        if(StringUtils.isBlank(title) || title.length() >20){
+            throw new IllegalArgumentException("제목은 0글자 이상 20글자 이하이어야 합니다.");
         }
 
-        if(content.length() > 200 || StringUtils.isBlank(content)){
-            throw new IllegalArgumentException("내용은 200글자 이하이어야 합니다.");
+        if(StringUtils.isBlank(content) || content.length() > 200){
+            throw new IllegalArgumentException("내용은 0글자 200글자 이하이어야 합니다.");
         }
 
         if(totalDonationAmount.isNaN()){
@@ -68,5 +72,6 @@ public class Wish {
         this.startDate = startDate;
         this.endDate = endDate;
     }
+
 
 }

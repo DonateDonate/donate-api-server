@@ -1,15 +1,12 @@
 package donate_api.sever.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor (access = AccessLevel.PROTECTED)
 @Getter
 @Entity
 public class Member {
@@ -28,7 +25,11 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Wish> wishList = new ArrayList<>();
 
-    public Member(String name) {
+    @Builder
+    public Member(String name, String birthDate, Account account, String imageUrl) {
         this.name = name;
+        this.birthDate = birthDate;
+        this.account = account;
+        this.imageUrl = imageUrl;
     }
 }
