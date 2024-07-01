@@ -52,7 +52,7 @@ public class Wish {
             throw new IllegalArgumentException("내용은 0글자 200글자 이하이어야 합니다.");
         }
 
-        if(totalDonationAmount.isNaN()){
+        if(totalDonationAmount == null){
             throw new NullPointerException("총 모금액은 null이어서는 안됩니다.");
         }
 
@@ -72,6 +72,4 @@ public class Wish {
         this.startDate = startDate;
         this.endDate = endDate;
     }
-
-
 }

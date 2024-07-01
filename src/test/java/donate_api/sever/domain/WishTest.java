@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class WishTest {
 
-    @DisplayName("title은 0글자 이상 20글자 이하이어야 한다")
+    @DisplayName("title은 20글자 이상 또는 null이면 예외가 발생한다")
     @Test
     public void wishTitleLengthTest(){
         //Arrange
@@ -63,7 +63,7 @@ class WishTest {
         Assertions.assertThat(actual_2.getMessage()).isEqualTo("제목은 0글자 이상 20글자 이하이어야 합니다.");
     }
 
-    @DisplayName("content는 0글자 이상 200글자 이하이어야 한다")
+    @DisplayName("content는 200글자 이상 또는 null이면 예외가 발생한다")
     @Test
     public void wishContentLengthTest(){
         //Arrange
@@ -117,6 +117,142 @@ class WishTest {
         Assertions.assertThat(actual_2).isInstanceOf(IllegalArgumentException.class);
         Assertions.assertThat(actual_2.getMessage()).isEqualTo("내용은 0글자 200글자 이하이어야 합니다.");
     }
+    @DisplayName("TotalDonationAmount값이 null이면 예외가 발생한다")
+    @Test
+    public void wishTotalDonationAmountEmptyTest(){
+
+        //Arrange
+        NullPointerException actual= null;
+        Member member  = makeMember();
+        String title = "제목입니다";
+        String content = "내용입니다.";
+        Float totalDonationAmount = null;
+        String imageUrl = "url";
+        String startDate = "20200210";
+        String endDate = "20200211";
+
+        //Act
+        try {
+            Wish wish = Wish.builder()
+                    .member(member)
+                    .title(title)
+                    .content(content)
+                    .totalDonationAmount(totalDonationAmount)
+                    .imageUrl(imageUrl)
+                    .startDate(startDate)
+                    .endDate(endDate)
+                    .build();
+        }catch (NullPointerException e){
+            actual = e;
+        }
+
+        Assertions.assertThat(actual).isNotNull();
+        Assertions.assertThat(actual).isInstanceOf(NullPointerException.class);
+        Assertions.assertThat(actual.getMessage()).isEqualTo("총 모금액은 null이어서는 안됩니다.");
+    }
+
+    @DisplayName("ImageUrl값이 null이면 예외가 발생한다")
+    @Test
+    public void wishImageUrlEmptyTest(){
+
+        //Arrange
+        NullPointerException actual= null;
+        Member member  = makeMember();
+        String title = "제목입니다";
+        String content = "내용입니다.";
+        Float totalDonationAmount = 12000F;
+        String imageUrl = null;
+        String startDate = "20200210";
+        String endDate = "20200211";
+
+        //Act
+        try {
+            Wish wish = Wish.builder()
+                    .member(member)
+                    .title(title)
+                    .content(content)
+                    .totalDonationAmount(totalDonationAmount)
+                    .imageUrl(imageUrl)
+                    .startDate(startDate)
+                    .endDate(endDate)
+                    .build();
+        }catch (NullPointerException e){
+            actual = e;
+        }
+
+        Assertions.assertThat(actual).isNotNull();
+        Assertions.assertThat(actual).isInstanceOf(NullPointerException.class);
+        Assertions.assertThat(actual.getMessage()).isEqualTo("이미지는 null이어서는 안됩니다.");
+    }
+
+    @DisplayName("startDate값이 null이면 예외가 발생한다")
+    @Test
+    public void wishStartDateEmptyTest(){
+        //Arrange
+        NullPointerException actual= null;
+        Member member  = makeMember();
+        String title = "제목입니다";
+        String content = "내용입니다.";
+        Float totalDonationAmount = 12000F;
+        String imageUrl = "imageUrl";
+        String startDate = null;
+        String endDate = "20200211";
+
+        //Act
+        try {
+            Wish wish = Wish.builder()
+                    .member(member)
+                    .title(title)
+                    .content(content)
+                    .totalDonationAmount(totalDonationAmount)
+                    .imageUrl(imageUrl)
+                    .startDate(startDate)
+                    .endDate(endDate)
+                    .build();
+        }catch (NullPointerException e){
+            actual = e;
+        }
+
+        Assertions.assertThat(actual).isNotNull();
+        Assertions.assertThat(actual).isInstanceOf(NullPointerException.class);
+        Assertions.assertThat(actual.getMessage()).isEqualTo("기간은 null이어서는 안됩니다.");
+
+    }
+    @DisplayName("endDate값이 null이면 예외가 발생한다")
+    @Test
+    public void wishEndDateEmptyTest(){
+
+        //Arrange
+        NullPointerException actual= null;
+        Member member  = makeMember();
+        String title = "제목입니다";
+        String content = "내용입니다.";
+        Float totalDonationAmount = 12000F;
+        String imageUrl = "imageUrl";
+        String startDate = "20200211";
+        String endDate = null;
+
+        //Act
+        try {
+            Wish wish = Wish.builder()
+                    .member(member)
+                    .title(title)
+                    .content(content)
+                    .totalDonationAmount(totalDonationAmount)
+                    .imageUrl(imageUrl)
+                    .startDate(startDate)
+                    .endDate(endDate)
+                    .build();
+        }catch (NullPointerException e){
+            actual = e;
+        }
+
+        Assertions.assertThat(actual).isNotNull();
+        Assertions.assertThat(actual).isInstanceOf(NullPointerException.class);
+        Assertions.assertThat(actual.getMessage()).isEqualTo("기간은 null이어서는 안됩니다.");
+
+    }
+    
 
 
 
