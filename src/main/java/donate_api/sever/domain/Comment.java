@@ -22,4 +22,6 @@ public class Comment {
 
     private String content;
     private String regDate;
+
+
 }
